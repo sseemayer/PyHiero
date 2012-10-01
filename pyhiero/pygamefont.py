@@ -11,6 +11,9 @@ class PyGameHieroFont(font.HieroFont):
 		return pygame.transform.flip(pygame.image.load(os.path.join(self.basedir, file)), False, True)
 
 	def render(self, text, antialias=False, color=(255,255,255), background=None):
+		if not text:
+			return None
+
 		ci = [ self.chars[character] for character in text ]
 
 		width = sum( c['xadvance']  for c in ci ) + ci[-1]['xoffset']
